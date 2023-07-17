@@ -9,7 +9,8 @@ class SmallestSufficientTeam1125 {
       val peopleSkills = people.map { it.fold(0) { a, s -> a or (1 shl skillToIndex[s]!!) } }
       val nSkillsNeeded = 1 shl reqSkills.size
       val skillsNeededMask = nSkillsNeeded - 1
-      val dp: Array<Array<List<Int>?>> = Array(nSkillsNeeded) { Array<List<Int>?>(people.size + 1) { null } }
+      val dp: Array<Array<List<Int>?>> =
+          Array(nSkillsNeeded) { Array<List<Int>?>(people.size + 1) { null } }
       dp.forEach { it[people.size] = everyone }
       dp[0].fill(noOne)
       fun dfs(skillsNeededMask: Int, currentPersonIdx: Int): List<Int> {
@@ -17,8 +18,8 @@ class SmallestSufficientTeam1125 {
           return dp[skillsNeededMask][currentPersonIdx]!!
         }
         val take =
-          dfs(skillsNeededMask and peopleSkills[currentPersonIdx].inv(), currentPersonIdx + 1) +
-                  currentPersonIdx
+            dfs(skillsNeededMask and peopleSkills[currentPersonIdx].inv(), currentPersonIdx + 1) +
+                currentPersonIdx
         val skip = dfs(skillsNeededMask, currentPersonIdx + 1)
         val min = sequenceOf(take, skip).minBy { it.size }!!
         dp[skillsNeededMask][currentPersonIdx] = min
