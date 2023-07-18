@@ -8,13 +8,13 @@ fun addTwoNumbers(l1: ListNode<Int>?, l2: ListNode<Int>?): ListNode<Int>? {
   var b: ListNode<Int>? = reverse(l2)
   while (a != null || b != null) {
     var sum = carry
-    a?.let { sum += a!!.v }
-    b?.let { sum += b!!.v }
+    a?.let { sum += it.`val` }
+    b?.let { sum += it.`val` }
     carry = sum / 10
     curr.next = ListNode(sum % 10)
     curr = curr.next!!
-    a?.let { a = a!!.next }
-    b?.let { b = b!!.next }
+    a?.let { a = it.next }
+    b?.let { b = it.next }
   }
   if (carry != 0) {
     curr.next = ListNode(carry)

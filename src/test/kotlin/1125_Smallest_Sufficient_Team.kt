@@ -7,7 +7,7 @@ class SmallestSufficientTeam1125Test {
   fun example1() {
     assertContentEquals(
         intArrayOf(0, 2),
-        SmallestSufficientTeam1125.smallestSufficientTeam(
+        smallestSufficientTeam(
             arrayOf("java", "nodejs", "reactjs"),
             listOf(listOf("java"), listOf("nodejs"), listOf("nodejs", "reactjs"))))
   }
@@ -16,7 +16,7 @@ class SmallestSufficientTeam1125Test {
   fun example2() {
     assertContentEquals(
         intArrayOf(1, 2),
-        SmallestSufficientTeam1125.smallestSufficientTeam(
+        smallestSufficientTeam(
             arrayOf("algorithms", "math", "java", "reactjs", "csharp", "aws"),
             listOf(
                 listOf("algorithms", "math", "java"),
