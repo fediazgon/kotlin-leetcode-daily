@@ -11,46 +11,50 @@ class LRUCache(private val capacity: Int) {
 
   private val map = mutableMapOf<Int, Node>()
 
-  fun get(key: Int): Int = map[key]?.also { remove(it) }?.also { addFirst(it) }?.v ?: -1
+  fun get(key: Int): Int {
+    return if (key in map) {
+      val node = map.getValue(key)
+      floatToFirst(node)
+      node.v
+    } else -1
+  }
 
   fun put(key: Int, value: Int) {
-    map.compute(key) { _, node ->
-          if (node == null) Node(key, value)
-          else {
-            node.v = value
-            remove(node)
-            node
-          }
-        }
-        ?.also { addFirst(it) }
+    if (key in map) {
+      val node = map.getValue(key)
+      node.v = value
+      floatToFirst(node)
+    } else {
+      if (size == capacity) {
+        val last = tail!!
+        map.remove(last.k)
+        unlink(last)
+        size--
+      }
+      Node(key, value).also { addFirst(it) }.also { map[key] = it }
+      size++
+    }
+  }
+
+  private fun floatToFirst(node: Node) {
+    unlink(node)
+    addFirst(node)
   }
 
   private fun addFirst(n: Node) {
-    if (size == capacity) map.remove(removeLast())
     head?.let { it.prev = n }
     n.prev = null
     n.next = head
     head = n
     if (tail == null) tail = n
-    size++
   }
 
-  private fun removeLast(): Int {
-    val last = tail!!
-    val tailPrev = last.prev
-    tailPrev?.let { it.next = null }
-    tail = tailPrev
-    size--
-    return last.k
-  }
-
-  private fun remove(node: Node) {
+  private fun unlink(node: Node) {
     val prev = node.prev
     val next = node.next
     prev?.let { it.next = next }
     next?.let { it.prev = prev }
     if (node == head) head = next
     if (node == tail) tail = prev
-    size--
   }
 }
