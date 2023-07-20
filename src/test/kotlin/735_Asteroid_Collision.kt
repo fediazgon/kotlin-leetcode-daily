@@ -25,6 +25,8 @@ class AsteroidCollision735 {
 
   @Test
   fun example5() {
-    assertContentEquals(intArrayOf(-6, -5, -1, -2, -3, -4, 5, 6), asteroidCollision(intArrayOf(-6, -5, -1, -2, -3, -4, 5, 6)))
+    assertContentEquals(
+        intArrayOf(-6, -5, -1, -2, -3, -4, 5, 6),
+        asteroidCollision(intArrayOf(-6, -5, -1, -2, -3, -4, 5, 6)))
   }
 }
