@@ -16,9 +16,9 @@ private fun soupServings(a: Int, b: Int, dp: Array<DoubleArray>): Double {
     return dp[servingA][servingB]
   }
   dp[servingA][servingB] =
-    (soupServings(servingA - 4, servingB - 0, dp) +
-      soupServings(servingA - 3, servingB - 1, dp) +
-      soupServings(servingA - 2, servingB - 2, dp) +
-      soupServings(servingA - 1, servingB - 3, dp)) / 4
+      (soupServings(servingA - 4, servingB - 0, dp) +
+          soupServings(servingA - 3, servingB - 1, dp) +
+          soupServings(servingA - 2, servingB - 2, dp) +
+          soupServings(servingA - 1, servingB - 3, dp)) / 4
   return dp[servingA][servingB]
 }
