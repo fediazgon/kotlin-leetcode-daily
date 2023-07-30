@@ -14,7 +14,7 @@ private fun strangePrinter(s: String, n: Int, l: Int, r: Int, dp: Array<IntArray
     }
     if (j != -1) {
       dp[l][r] =
-          minOf(dp[l][r], 1 + strangePrinter(s, n, j, i, dp) + strangePrinter(s, n, i + 1, r, dp))
+        minOf(dp[l][r], 1 + strangePrinter(s, n, j, i, dp) + strangePrinter(s, n, i + 1, r, dp))
     }
   }
   if (j == -1) {
