@@ -20,7 +20,7 @@ class MinimumASCIIDeleteSumForTwoStrings712Test {
 
   @Test
   fun example4() {
-    val s = ('a'..'z').joinToString(separator="").repeat(40)
+    val s = ('a'..'z').joinToString(separator = "").repeat(40)
     assertEquals(208562, minimumDeleteSum(s, s.reversed()))
   }
 }
