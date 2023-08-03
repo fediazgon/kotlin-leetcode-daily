@@ -69,6 +69,7 @@ build/
 .idea/misc.xml
 .idea/protoeditor.xml
 .idea/ktfmt.xml
+.idea/vcs.xml
 node_modules/
 .rpt2_cache/
 libraries/tools/kotlin-test-js-runner/lib/

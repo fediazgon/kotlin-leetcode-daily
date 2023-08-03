@@ -9,10 +9,10 @@ fun permute(nums: IntArray, curr: LinkedHashSet<Int>, comb: MutableList<List<Int
     comb += curr.toList()
   }
   nums
-    .filter { !curr.contains(it) }
-    .forEach {
-      curr.add(it)
-      permute(nums, curr, comb)
-      curr.remove(it)
-    }
+      .filter { !curr.contains(it) }
+      .forEach {
+        curr.add(it)
+        permute(nums, curr, comb)
+        curr.remove(it)
+      }
 }
