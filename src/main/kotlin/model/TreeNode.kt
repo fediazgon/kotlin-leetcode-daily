@@ -1,9 +1,12 @@
 package model
 
-data class TreeNode<T : Any>(var `val`: T, var left: TreeNode<T>?, var right: TreeNode<T>?) {
+data class TreeNode<T : Any>(var `val`: T, var left: TreeNode<T>?, var right: TreeNode<T>?) :
+    Cloneable {
   constructor(`val`: T) : this(`val`, null, null)
 
   override fun toString(): String = levelOrderTraversal().joinToString(", ", "[", "]")
+
+  public override fun clone(): TreeNode<T> = TreeNode(`val`, left?.clone(), right?.clone())
 
   private fun levelOrderTraversal(): List<T?> {
     val traversal = mutableListOf<T?>()
